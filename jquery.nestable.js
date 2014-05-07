@@ -32,6 +32,7 @@
         eCancel = hasTouch ? 'touchcancel' : 'mouseup';
 
     var defaults = {
+            disableDrag     : false,
             listNodeName    : 'ol',
             itemNodeName    : 'li',
             rootClass       : 'dd',
@@ -121,15 +122,18 @@
                 }
             };
 
-            if (hasTouch) {
-                list.el[0].addEventListener(eStart, onStartEvent, false);
-                window.addEventListener(eMove, onMoveEvent, false);
-                window.addEventListener(eEnd, onEndEvent, false);
-                window.addEventListener(eCancel, onEndEvent, false);
-            } else {
-                list.el.on(eStart, onStartEvent);
-                list.w.on(eMove, onMoveEvent);
-                list.w.on(eEnd, onEndEvent);
+            if(!options.disableDrag)
+            {
+                if (hasTouch) {
+                    list.el[0].addEventListener(eStart, onStartEvent, false);
+                    window.addEventListener(eMove, onMoveEvent, false);
+                    window.addEventListener(eEnd, onEndEvent, false);
+                    window.addEventListener(eCancel, onEndEvent, false);
+                } else {
+                    list.el.on(eStart, onStartEvent);
+                    list.w.on(eMove, onMoveEvent);
+                    list.w.on(eEnd, onEndEvent);
+                }
             }
 
         },
