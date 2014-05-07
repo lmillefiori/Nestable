@@ -122,8 +122,7 @@
                 }
             };
 
-            if(!options.disableDrag)
-            {
+            if (!this.options.disableDrag) {
                 if (hasTouch) {
                     list.el[0].addEventListener(eStart, onStartEvent, false);
                     window.addEventListener(eMove, onMoveEvent, false);
